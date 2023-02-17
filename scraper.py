@@ -10,7 +10,7 @@ top = robloxparents.top(limit=5)
 
 #https://praw.readthedocs.io/en/stable/code_overview/models/submission.html#praw.models.Submission
 for submission in top:
-    print(submission.title)
-    print(submission.selftext)
+    print("Title:\t" + submission.title)
+    print("Text:\t" + submission.selftext)
     for comment in submission.comments:
-        print(comment.body)
+        print("Comment:\t" + comment.body)
