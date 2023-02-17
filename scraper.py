@@ -12,3 +12,5 @@ top = robloxparents.top(limit=5)
 for submission in top:
     print(submission.title)
     print(submission.selftext)
+    for comment in submission.comments:
+        print(comment.body)
