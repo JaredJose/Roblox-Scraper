@@ -17,6 +17,20 @@ top = robloxparents.top(limit=5)
 #     for comment in submission.comments:
 #         print("Comment:\t" + comment.body)
 
-headers = ['url', 'author', 'date', 'timestamp', 'text', 'subreddit', 'score', 'upvotes', 'downvotes', 'up_ratio', 'awards', 'comments']
-writer = csv.DictWriter(f, fieldnames=headers, extrasaction='ignore', dialect='excel')
-writer.writeheader()
+#https://stackoverflow.com/questions/58977105/how-to-write-multiple-lines-of-reddit-data-using-praw-to-csv-txt-file
+with open('postFetch.csv','a', newline='') as f:
+    headers = ['url', 'title', 'author', 'timestamp', 'text', 'subreddit', 'comments', 'score', 'up_ratio']
+    writer = csv.DictWriter(f, fieldnames=headers, extrasaction='ignore', dialect='excel')
+    writer.writeheader()
+    for post in top:
+        data = {'url' : post.url,
+                'title' : post.title,
+                'author' : post.author,
+                'timestamp' : post.created_utc,
+                'text' : post.selftext,
+                'subreddit' : post.subreddit.name,
+                'comments' : post.num_comments,
+                'score' : post.score,
+                'up_ratio' : post.upvote_ratio
+                }
+    writer.writerow(data)
