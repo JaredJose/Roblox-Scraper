@@ -44,26 +44,19 @@ timestamp_list = []
 score_list = []
 comment_list = []
 comment_id_list = []
+parent_id_list = []
 for post in top:
-    comments = list(post.comments)
+    comments = post.comments.list()
+    #comments = list(post.comments)
     for comment in comments:
         #print('we balling')
-        url_list.append(post.url)
+        url_list.append(post.url)   
         author_list.append(comment.author.name)
         date_list.append(datetime.utcfromtimestamp(comment.created_utc).strftime('%Y-%m-%d'))
         timestamp_list.append(comment.created_utc)
         score_list.append(comment.score)
         comment_list.append(comment.body)
         comment_id_list.append(comment.id)
-        if len(comment.replies) > 0:
-            for reply in comment.replies:
-                        url_list.append(post.url)
-                        author_list.append(reply.author.name)
-                        date_list.append(datetime.utcfromtimestamp(reply.created_utc).strftime('%Y-%m-%d'))
-                        timestamp_list.append(reply.created_utc)
-                        score_list.append(reply.score)
-                        comment_list.append(reply.body)
-                        comment_id_list.append(reply.id)
 
 
 df = pd.DataFrame({'url': url_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'score': score_list, 'comment': comment_list, 'comment_id': comment_id_list})
