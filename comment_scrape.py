@@ -55,6 +55,16 @@ for post in top:
         score_list.append(comment.score)
         comment_list.append(comment.body)
         comment_id_list.append(comment.id)
+        if len(comment.replies) > 0:
+            for reply in comment.replies:
+                        url_list.append(post.url)
+                        author_list.append(reply.author.name)
+                        date_list.append(datetime.utcfromtimestamp(reply.created_utc).strftime('%Y-%m-%d'))
+                        timestamp_list.append(reply.created_utc)
+                        score_list.append(reply.score)
+                        comment_list.append(reply.body)
+                        comment_id_list.append(reply.id)
+
 
 df = pd.DataFrame({'url': url_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'score': score_list, 'comment': comment_list, 'comment_id': comment_id_list})
 df.to_csv('robloxParentsComments.csv', index=False)
