@@ -57,7 +57,16 @@ for post in top:
         score_list.append(comment.score)
         comment_list.append(comment.body)
         comment_id_list.append(comment.id)
+        # if isinstance(comment.parent(), Submission):
+        #           parent_id_list.append('N/A')
+        # else:
+        #     parent_id_list.append(comment.parent().id)
+        par = comment.parent()
+        if type(par) is praw.models.Submission:
+            parent_id_list.append('N/A')
+        else:
+            parent_id_list.append(par.id)
 
 
-df = pd.DataFrame({'url': url_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'score': score_list, 'comment': comment_list, 'comment_id': comment_id_list})
+df = pd.DataFrame({'url': url_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'score': score_list, 'comment': comment_list, 'comment_id': comment_id_list, 'parent_id': parent_id_list})
 df.to_csv('robloxParentsComments.csv', index=False)
