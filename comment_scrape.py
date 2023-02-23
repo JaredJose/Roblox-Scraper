@@ -8,7 +8,7 @@ reddit = praw.Reddit(client_id="dh55NhdB6Swr9fPZLfBkxw",      # your client id
                      user_agent="my user agent") #user agent name
 
 robloxparents = reddit.subreddit("robloxparents")
-top = robloxparents.top(limit=5)
+top = robloxparents.top(limit=100)
 
 #https://praw.readthedocs.io/en/stable/code_overview/models/submission.html#praw.models.Submission
 
@@ -46,9 +46,18 @@ comment_list = []
 comment_id_list = []
 parent_id_list = []
 for post in top:
+    if post is None:
+        #print("NONE TYPE NONE TYPE")
+        break
     comments = post.comments.list()
     #comments = list(post.comments)
     for comment in comments:
+        if comment is None:
+            #print("NONE TYPE NONE TYPE")
+            break
+        if comment.author is None:
+            #print("NOPE")
+            break
         #print('we balling')
         url_list.append(post.url)   
         author_list.append(comment.author.name)
