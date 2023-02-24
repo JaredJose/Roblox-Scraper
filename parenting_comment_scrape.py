@@ -8,7 +8,8 @@ reddit = praw.Reddit(client_id="dh55NhdB6Swr9fPZLfBkxw",      # your client id
                      user_agent="my user agent") #user agent name
 
 parenting = reddit.subreddit("parenting")
-query = parenting.search("roblox")
+query = parenting.search(query="roblox", limit=1000)
+# query = parenting.search(query="roblox")
 
 # top = robloxparents.top(limit=100)
 
@@ -19,8 +20,11 @@ timestamp_list = []
 score_list = []
 comment_list = []
 comment_id_list = []
-parent_id_list = []
+parent_id_list = [] 
+i = 0
 for post in query:
+    print(i)
+    i += 1
     if post is None:
         #print("NONE TYPE NONE TYPE")
         break
