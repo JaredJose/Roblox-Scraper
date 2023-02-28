@@ -20,7 +20,7 @@ comment_list = []
 score_list = []
 up_ratio_list = []
 
-for post in reddit.subreddit("parenting").search(query = "roblox", limit=20):
+for post in reddit.subreddit("parenting").search(query = "roblox", limit=100):
     allText = (post.title + '\n' + post.selftext).lower()
     if not ("behavior" or "behaviour" or "discipline" or "screentime") in allText:
         url_list.append(post.url)
