@@ -62,4 +62,4 @@ for post in top:
     up_ratio_list.append(post.upvote_ratio)
 
 df = pd.DataFrame({'url': url_list, 'title': title_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'text': text_list, 'subreddit': sub_list, 'score': score_list, 'upvote ratio': up_ratio_list})
-df.to_csv('robloxParentsPosts.csv', index=False)
+df.to_csv('data/robloxParentsPosts.csv', index=False)

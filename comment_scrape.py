@@ -78,4 +78,4 @@ for post in top:
 
 
 df = pd.DataFrame({'url': url_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'score': score_list, 'comment': comment_list, 'comment_id': comment_id_list, 'parent_id': parent_id_list})
-df.to_csv('robloxParentsComments.csv', index=False)
+df.to_csv('data/robloxParentsComments.csv', index=False)

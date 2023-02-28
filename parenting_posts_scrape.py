@@ -35,4 +35,4 @@ for post in reddit.subreddit("parenting").search(query = "roblox", limit=20):
         up_ratio_list.append(post.upvote_ratio)
 
 df = pd.DataFrame({'url': url_list, 'title': title_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'text': text_list, 'subreddit': sub_list, 'score': score_list, 'upvote ratio': up_ratio_list})
-df.to_csv('parentingPostsFILTERED.csv', index=False)
+df.to_csv('data/filteredParentingPosts.csv', index=False)

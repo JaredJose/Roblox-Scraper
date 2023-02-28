@@ -24,7 +24,7 @@ from gensim.utils import simple_preprocess
 # In[22]:
 
 
-df = pd.read_csv('https://raw.githubusercontent.com/JaredJose/Roblox-Scraper/main/robloxParentsComments.csv?token=GHSAT0AAAAAAB6VRXEZGCOP56HO7SMSVO7UY7ZMNGQ')
+df = pd.read_csv('data/robloxParentsComments.csv')
 
 
 # In[23]:
