@@ -8,7 +8,7 @@ reddit = praw.Reddit(client_id="dh55NhdB6Swr9fPZLfBkxw",      # your client id
                      user_agent="my user agent") #user agent name
 
 robloxparents = reddit.subreddit("robloxparents")
-top = robloxparents.top(limit=100)
+top = robloxparents.top(limit=1000)
 
 url_list = [] 
 author_list = []
