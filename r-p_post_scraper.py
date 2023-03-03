@@ -12,30 +12,6 @@ top = robloxparents.top(limit=5)
 
 #https://praw.readthedocs.io/en/stable/code_overview/models/submission.html#praw.models.Submission
 
-# for submission in top:
-#     print("Title:\t" + submission.title)
-#     print("Text:\t" + submission.selftext)
-#     for comment in submission.comments:
-#         print("Comment:\t" + comment.body)
-
-#https://stackoverflow.com/questions/58977105/how-to-write-multiple-lines-of-reddit-data-using-praw-to-csv-txt-file
-
-# with open('postFetch.csv','a', newline='') as f:
-#     headers = ['url', 'title', 'author', 'timestamp', 'text', 'subreddit', 'comments', 'score', 'up_ratio']
-#     writer = csv.DictWriter(f, fieldnames=headers, extrasaction='ignore', dialect='excel')
-#     writer.writeheader()
-#     for post in top:
-#         data = {'url' : post.url,
-#                 'title' : post.title,
-#                 'author' : post.author,
-#                 'timestamp' : post.created_utc,
-#                 'text' : post.selftext,
-#                 'subreddit' : post.subreddit.name,
-#                 'comments' : post.num_comments,
-#                 'score' : post.score,
-#                 'up_ratio' : post.upvote_ratio
-#                 }
-#     writer.writerow(data)
 
 #Using dataframes:
 url_list = []
@@ -62,4 +38,4 @@ for post in top:
     up_ratio_list.append(post.upvote_ratio)
 
 df = pd.DataFrame({'url': url_list, 'title': title_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'text': text_list, 'subreddit': sub_list, 'score': score_list, 'upvote ratio': up_ratio_list})
-df.to_csv('robloxParentsPosts.csv', index=False)
+df.to_csv('data/robloxParentsPosts.csv', index=False)

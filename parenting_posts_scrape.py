@@ -20,17 +20,19 @@ comment_list = []
 score_list = []
 up_ratio_list = []
 
-for post in reddit.subreddit("parenting").search("roblox"):
-    url_list.append(post.url)
-    title_list.append(post.title)
-    author_list.append(post.author)
-    date_list.append(datetime.utcfromtimestamp(post.created_utc).strftime('%Y-%m-%d'))
-    timestamp_list.append(post.created_utc)
-    text_list.append(post.selftext)
-    sub_list.append(post.subreddit.name)
-    comment_list.append(post.num_comments)
-    score_list.append(post.score)
-    up_ratio_list.append(post.upvote_ratio)
+for post in reddit.subreddit("parenting").search(query = "roblox", limit=100):
+    allText = (post.title + '\n' + post.selftext).lower()
+    if not ("behavior" or "behaviour" or "discipline" or "screentime") in allText:
+        url_list.append(post.url)
+        title_list.append(post.title)
+        author_list.append(post.author)
+        date_list.append(datetime.utcfromtimestamp(post.created_utc).strftime('%Y-%m-%d'))
+        timestamp_list.append(post.created_utc)
+        text_list.append(post.selftext)
+        sub_list.append(post.subreddit.name)
+        comment_list.append(post.num_comments)
+        score_list.append(post.score)
+        up_ratio_list.append(post.upvote_ratio)
 
 df = pd.DataFrame({'url': url_list, 'title': title_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'text': text_list, 'subreddit': sub_list, 'score': score_list, 'upvote ratio': up_ratio_list})
-df.to_csv('parentingPosts.csv', index=False)
+df.to_csv('data/filteredParentingPosts.csv', index=False)
