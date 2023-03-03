@@ -8,7 +8,7 @@ reddit = praw.Reddit(client_id="dh55NhdB6Swr9fPZLfBkxw",      # your client id
                      user_agent="my user agent") #user agent name
 
 robloxparents = reddit.subreddit("robloxparents")
-top = robloxparents.top(limit=10)
+new = robloxparents.new(limit=1000)
 
 type_list = []
 url_list = [] 
@@ -22,7 +22,7 @@ comment_id_list = []
 parent_id_list = []
 i = 0
 
-for post in top:
+for post in new:
     print(i)
     i += 1
     if post is None:
@@ -40,7 +40,7 @@ for post in top:
     date_list.append(datetime.utcfromtimestamp(post.created_utc).strftime('%Y-%m-%d'))
     timestamp_list.append(post.created_utc)
     score_list.append(post.score)
-    text_list.append(post.selftext)
+    text_list.append(post.title + '\n' + post.selftext)
     comment_id_list.append('N/A')
     parent_id_list.append('N/A')
     
