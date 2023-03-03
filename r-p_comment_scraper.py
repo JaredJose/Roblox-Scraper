@@ -27,13 +27,14 @@ for post in top:
     for comment in comments:
         if comment is None:
             #print("NONE TYPE NONE TYPE")
-            break
-        if comment.author is None:
-            #print("NOPE")
-            break
+            continue
         #print('we balling')
         url_list.append(post.url)   
-        author_list.append(comment.author.name)
+        if comment.author is None:
+            print("NOPE")
+            author_list.append('N/A')
+        else:
+            author_list.append(comment.author.name)
         date_list.append(datetime.utcfromtimestamp(comment.created_utc).strftime('%Y-%m-%d'))
         timestamp_list.append(comment.created_utc)
         score_list.append(comment.score)
