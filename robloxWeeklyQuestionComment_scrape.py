@@ -8,7 +8,7 @@ reddit = praw.Reddit(client_id="dh55NhdB6Swr9fPZLfBkxw",      # your client id
                      user_agent="my user agent") #user agent name
 
 parenting = reddit.subreddit("roblox")
-query = parenting.search(query="weekly question thread", limit=100)
+query = parenting.search(query="weekly question thread", limit=None)
 
 url_list = []
 postdate_list = []
@@ -34,8 +34,13 @@ for post in query:
         if comment is None:
             #print("NONE TYPE NONE TYPE")
             continue
-        
-        if "privacy" in comment.body.lower():
+        if comment.author == "AutoModerator":
+            print("ignore automod")
+            continue
+        if comment is None or comment.body == "[removed]" or comment.body == "[deleted]":
+            print("deleted comment")
+            continue
+        if "parent" in comment.body.lower():
         # ("parent" and not "apparent") or " son " or " son." or "daughter" "niece" or "nephew" or 
             url_list.append(post.url)
             postdate_list.append(datetime.utcfromtimestamp(post.created_utc).strftime('%Y-%m-%d'))

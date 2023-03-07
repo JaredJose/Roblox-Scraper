@@ -44,7 +44,7 @@ for post in reddit.subreddit("parenting").search(query = "roblox", limit=None):
     post.comments.replace_more(limit=None)
     comments = post.comments.list()
     for comment in comments:
-        if comment is None:
+        if comment is None or comment.body == "[removed]" or comment.body == "[deleted]":
             print("deleted comment")
             continue
         type_list.append('comment')

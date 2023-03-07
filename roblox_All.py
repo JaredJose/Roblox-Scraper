@@ -7,9 +7,6 @@ reddit = praw.Reddit(client_id="dh55NhdB6Swr9fPZLfBkxw",      # your client id
                      client_secret="Lk2HgqcAENPI5a--643zQi5BcdCN6Q",  #your client secret
                      user_agent="my user agent") #user agent name
 
-robloxparents = reddit.subreddit("robloxparents")
-new = robloxparents.new(limit=1000)
-
 type_list = []
 url_list = [] 
 author_list = []
@@ -22,13 +19,15 @@ comment_id_list = []
 parent_id_list = []
 i = 0
 
-for post in new:
+for post in reddit.subreddit("roblox").search(query = "parent", limit=1000):
     print(i)
     i += 1
     if post is None:
         print("deleted post")
         continue
-    
+    if post.author.name == "AutoModerator" or post.author.name == "BloxBot":
+        print("ignore automod")
+        continue
     type_list.append('Post')
     url_list.append(post.url)
     title_list.append(post.title)
@@ -72,4 +71,4 @@ for post in new:
 
 
 df = pd.DataFrame({'type': type_list, 'url': url_list, 'title': title_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'score': score_list, 'text': text_list, 'comment_id': comment_id_list, 'parent_id': parent_id_list})
-df.to_csv('data/ALLrobloxParents.csv', index=False)
+df.to_csv('data/ALLRoblox-onlyParentQuery.csv', index=False)
