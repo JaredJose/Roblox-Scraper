@@ -71,4 +71,4 @@ for post in reddit.subreddit("roblox").search(query = "parent", limit=1000):
 
 
 df = pd.DataFrame({'type': type_list, 'url': url_list, 'title': title_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'score': score_list, 'text': text_list, 'comment_id': comment_id_list, 'parent_id': parent_id_list})
-df.to_csv('data/ALLRoblox-onlyParentQuery.csv', index=False)
+df.to_csv('data/ALLRoblox.csv', index=False)

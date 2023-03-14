@@ -8,7 +8,7 @@ reddit = praw.Reddit(client_id="dh55NhdB6Swr9fPZLfBkxw",      # your client id
                      user_agent="my user agent") #user agent name
 
 robloxparents = reddit.subreddit("robloxparents")
-new = robloxparents.new(limit=1000)
+new = robloxparents.new(limit=None)
 
 type_list = []
 url_list = [] 
@@ -25,8 +25,12 @@ i = 0
 for post in new:
     print(i)
     i += 1
+    alltext = post.title + '\n' + post.selftext
     if post is None:
         print("deleted post")
+        continue
+    if "korblox" in alltext.lower() or "beast mode" in alltext.lower():
+        print("misc spam")
         continue
     
     type_list.append('Post')
@@ -40,7 +44,7 @@ for post in new:
     date_list.append(datetime.utcfromtimestamp(post.created_utc).strftime('%Y-%m-%d'))
     timestamp_list.append(post.created_utc)
     score_list.append(post.score)
-    text_list.append(post.title + '\n' + post.selftext)
+    text_list.append(alltext)
     comment_id_list.append('N/A')
     parent_id_list.append('N/A')
     
