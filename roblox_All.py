@@ -22,11 +22,15 @@ i = 0
 for post in reddit.subreddit("roblox").search(query = "parent", limit=1000):
     print(i)
     i += 1
+    alltext = post.title + '\n' + post.selftext
     if post is None:
         print("deleted post")
         continue
     if post.author.name == "AutoModerator" or post.author.name == "BloxBot":
         print("ignore automod")
+        continue
+    if "script" in alltext.lower():
+        print(alltext)
         continue
     type_list.append('Post')
     url_list.append(post.url)
@@ -39,7 +43,7 @@ for post in reddit.subreddit("roblox").search(query = "parent", limit=1000):
     date_list.append(datetime.utcfromtimestamp(post.created_utc).strftime('%Y-%m-%d'))
     timestamp_list.append(post.created_utc)
     score_list.append(post.score)
-    text_list.append(post.title + '\n' + post.selftext)
+    text_list.append(alltext)
     comment_id_list.append('N/A')
     parent_id_list.append('N/A')
     
