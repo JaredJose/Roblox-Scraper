@@ -19,7 +19,7 @@ comment_id_list = []
 parent_id_list = []
 i = 0
 
-for post in reddit.subreddit("roblox").search(query = "parent", limit=1000):
+for post in reddit.subreddit("roblox").search(query = "parent OR son OR daughter OR niece OR nephew", limit=1000):
     print(i)
     i += 1
     alltext = post.title + '\n' + post.selftext
