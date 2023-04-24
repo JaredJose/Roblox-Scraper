@@ -11,9 +11,11 @@ reddit = praw.Reddit(client_id="dh55NhdB6Swr9fPZLfBkxw",      # your client id
 parenting = reddit.subreddit("roblox")
 query = parenting.search(query="weekly question thread", limit=None)
 
+type_list = []
 url_list = []
-postdate_list = []
-post_id_list = []
+title_list = []
+#postdate_list = []
+#post_id_list = []
 author_list = []
 date_list = []
 timestamp_list = []
@@ -46,9 +48,11 @@ for post in query:
         s = comment.body.lower().split()
         for word in s:
             if word.startswith("parent") or word == "son" or "daughter" in word or "nephew" in word or word == "niece":
+                type_list.append('comment')
                 url_list.append(post.url)
-                postdate_list.append(datetime.utcfromtimestamp(post.created_utc).strftime('%Y-%m-%d'))
-                post_id_list.append(post.id)
+                title_list.append('N/A')
+                #postdate_list.append(datetime.utcfromtimestamp(post.created_utc).strftime('%Y-%m-%d'))
+                #post_id_list.append(post.id)
 
                 if comment.author is None:
                     author_list.append('N/A')
@@ -69,5 +73,5 @@ for post in query:
                 break
 
 
-df = pd.DataFrame({'url': url_list, 'post date': postdate_list, 'post id': post_id_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'score': score_list, 'comment': comment_list, 'comment_id': comment_id_list, 'parent_id': parent_id_list})
-df.to_csv('data/weeklyRobloxComments.csv', index=False)
+df = pd.DataFrame({'type': type_list, 'url': url_list, 'title': title_list, 'author': author_list, 'date': date_list, 'timestamp': timestamp_list, 'score': score_list, 'text': comment_list, 'comment_id': comment_id_list, 'parent_id': parent_id_list})
+df.to_csv('data/weeklyRobloxCommentsv2.csv', index=False)
